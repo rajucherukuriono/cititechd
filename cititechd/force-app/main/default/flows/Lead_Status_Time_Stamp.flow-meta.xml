@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Assign_Lead_Status_Prior_Value</name>
+        <label>Assign Lead Status Prior Value</label>
+        <locationX>248</locationX>
+        <locationY>335</locationY>
+        <assignmentItems>
+            <assignToReference>PriorLeadStatusValue</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record__Prior.Status</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>If_Prior_MQL</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_MQL_Prior_Date_Time</name>
+        <label>Assign MQL Prior Date Time</label>
+        <locationX>50</locationX>
+        <locationY>575</locationY>
+        <assignmentItems>
+            <assignToReference>PriorDateTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.MQL_Date_Time_Stamp__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>If_Curr_MQL</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Number_Of_Days_to_MQL</name>
+        <label>Assign Number Of Days to MQL</label>
+        <locationX>50</locationX>
+        <locationY>1127</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.MQL_Status_Duration_Days2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NumberOfDays</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Number_Of_Days_to_SAL</name>
+        <label>Assign Number Of Days to SAL</label>
+        <locationX>314</locationX>
+        <locationY>1247</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SAL_Status_Duration_Days2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NumberOfDays</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_SAL_Prior_Date_Time</name>
+        <label>Assign SAL Prior Date Time</label>
+        <locationX>314</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>PriorDateTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SAL_Date_Time_Stamp__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>If_Curr_MQL</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>If_Curr_MQL</name>
+        <label>If Curr MQL</label>
+        <locationX>248</locationX>
+        <locationY>1007</locationY>
+        <defaultConnector>
+            <targetReference>If_Curr_SAL</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>MQL_Curr_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>MQL</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Number_Of_Days_to_MQL</targetReference>
+            </connector>
+            <label>MQL Curr Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>If_Curr_SAL</name>
+        <label>If Curr SAL</label>
+        <locationX>446</locationX>
+        <locationY>1127</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>SAL_Curr_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>SAL</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Number_Of_Days_to_SAL</targetReference>
+            </connector>
+            <label>SAL Curr Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>If_Prior_MQL</name>
+        <label>If Prior MQL</label>
+        <locationX>248</locationX>
+        <locationY>455</locationY>
+        <defaultConnector>
+            <targetReference>If_Prior_SAL</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>MQL_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>PriorLeadStatusValue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>MQL</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_MQL_Prior_Date_Time</targetReference>
+            </connector>
+            <label>MQL Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>If_Prior_SAL</name>
+        <label>If Prior SAL</label>
+        <locationX>446</locationX>
+        <locationY>575</locationY>
+        <defaultConnector>
+            <targetReference>If_Curr_MQL</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>SAL_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>SAL</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_SAL_Prior_Date_Time</targetReference>
+            </connector>
+            <label>SAL Yes</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>NumberOfDays</name>
+        <dataType>Number</dataType>
+        <expression>{!PriorDateTime} - {!$Flow.CurrentDateTime}</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Lead Status Time Stamp {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Lead Status Time Stamp</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Assign_Lead_Status_Prior_Value</startElementReference>
+    <status>Active</status>
+    <variables>
+        <description>PreviousDateTime of any status</description>
+        <name>PriorDateTime</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>PriorLeadStatusValue</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

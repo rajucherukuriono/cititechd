@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>If_Age_is_Less_than_20</fullName>
+    <active>true</active>
+    <errorConditionFormula>DOB__c  &gt;  DATE(2000, 1, 1)</errorConditionFormula>
+    <errorMessage>Below 22 years students not allowed</errorMessage>
+</ValidationRule>

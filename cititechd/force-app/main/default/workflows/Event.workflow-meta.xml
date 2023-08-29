@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Event_Email_Alert_on_Status_Blank</fullName>
+        <description>Event Email Alert on Status Blank</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>OpportunityLightningEmailTemplates/Event_status_is_not_updated_1658998023104</template>
+    </alerts>
+    <alerts>
+        <fullName>Please_update_Event_Status</fullName>
+        <description>Please update Event Status</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Email</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All_Email_Templates/New_Venue_Created</template>
+    </alerts>
+</Workflow>

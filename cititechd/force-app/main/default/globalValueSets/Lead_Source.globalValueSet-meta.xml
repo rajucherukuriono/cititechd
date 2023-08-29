@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Advertisement</fullName>
+        <default>false</default>
+        <label>Advertisement</label>
+    </customValue>
+    <customValue>
+        <fullName>Buy Side</fullName>
+        <default>false</default>
+        <label>Buy Side</label>
+    </customValue>
+    <customValue>
+        <fullName>Corporate</fullName>
+        <default>false</default>
+        <label>Corporate</label>
+    </customValue>
+    <customValue>
+        <fullName>drip</fullName>
+        <default>false</default>
+        <label>drip</label>
+    </customValue>
+    <customValue>
+        <fullName>Email</fullName>
+        <default>false</default>
+        <label>Email</label>
+    </customValue>
+    <customValue>
+        <fullName>Facebook</fullName>
+        <default>false</default>
+        <label>Facebook</label>
+    </customValue>
+    <customValue>
+        <fullName>Google</fullName>
+        <default>false</default>
+        <label>Google</label>
+    </customValue>
+    <customValue>
+        <fullName>IHS Referral Form</fullName>
+        <default>false</default>
+        <label>IHS Referral Form</label>
+    </customValue>
+    <customValue>
+        <fullName>Knovio</fullName>
+        <default>false</default>
+        <label>Knovio</label>
+    </customValue>
+    <customValue>
+        <fullName>LinkedIn</fullName>
+        <default>false</default>
+        <label>LinkedIn</label>
+    </customValue>
+    <customValue>
+        <fullName>N195</fullName>
+        <default>false</default>
+        <label>N195</label>
+    </customValue>
+    <customValue>
+        <fullName>OpenExchange</fullName>
+        <default>true</default>
+        <label>OpenExchange</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Partner</fullName>
+        <default>false</default>
+        <label>Partner</label>
+    </customValue>
+    <customValue>
+        <fullName>Referral</fullName>
+        <default>false</default>
+        <label>Referral</label>
+    </customValue>
+    <customValue>
+        <fullName>Sell Side</fullName>
+        <default>false</default>
+        <label>Sell Side</label>
+    </customValue>
+    <customValue>
+        <fullName>Streamlink</fullName>
+        <default>false</default>
+        <label>Streamlink</label>
+    </customValue>
+    <customValue>
+        <fullName>Trade Show</fullName>
+        <default>false</default>
+        <label>Trade Show</label>
+    </customValue>
+    <customValue>
+        <fullName>Veracast</fullName>
+        <default>false</default>
+        <label>Veracast</label>
+    </customValue>
+    <customValue>
+        <fullName>Website</fullName>
+        <default>false</default>
+        <label>Website</label>
+    </customValue>
+    <customValue>
+        <fullName>Word of mouth</fullName>
+        <default>false</default>
+        <label>Word of mouth</label>
+    </customValue>
+    <customValue>
+        <fullName>Zoominfo</fullName>
+        <default>false</default>
+        <label>Zoominfo</label>
+    </customValue>
+    <description>Global picklist for Lead Source. (Cant convert</description>
+    <masterLabel>Lead Source</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
